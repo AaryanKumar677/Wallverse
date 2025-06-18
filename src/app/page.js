@@ -1,103 +1,130 @@
-import Image from "next/image";
+'use client';
+
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+
+const wallpapers = [
+  {
+    title: 'Zenitsu Agatsuma',
+    slug: 'zenitsu-agatsuma',
+    src: '/wallpapers/Zenitsu_HD.jpg',
+    description: 'Zenitsu is a Thunder Breathing swordsman from Demon Slayer with lightning speed and an electrifying presence.'
+  },  {
+    title: 'Jiraya Sensai',
+    slug: 'jiraya-sensai',
+    src: '/wallpapers/Jiraya_HD.png',
+    description: 'Jiraya, the Toad Sage, is a legendary shinobi from Naruto known for his wisdom, humor, and powerful jutsus.'
+  }
+];
+
+const categories = [
+  'Anime',
+  'Nature',
+  'Minimal',
+  'Abstract',
+  'Technology',
+  'Space',
+  'Gaming'
+];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <motion.div
+      className="min-h-screen bg-gradient-to-br from-[#0d0b1e] via-[#12082a] to-[#1a0933] p-6 text-white"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.7 }}
+    >
+      <motion.h1
+        className="text-5xl sm:text-6xl font-extrabold text-center mb-4 drop-shadow-xl"
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7 }}
+      >
+        <span className="text-transparent bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text">
+          Welcome to
+        </span>{' '}
+        <span className="text-transparent bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-7xl sm:text-8xl">
+          Wallverse
+        </span>
+      </motion.h1>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <motion.p
+        className="text-center text-[19px] sm:text-[15px] text-slate-400 max-w-xl mx-auto mb-12"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3, duration: 0.6 }}
+      >
+        Discover, download, and indulge in a universe of stunning anime, nature, minimal, and premium wallpapers.
+        Each wallpaper is handpicked to elevate your screen experience.
+      </motion.p>
+
+      <section className="mb-16 max-w-5xl mx-auto px-4">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-pink-400 mb-6 text-left -ml-34">Popular Categories</h2>
+
+        <div className="flex flex-col items-center gap-6">
+          <div className="flex gap-10">
+            {categories.slice(0, 4).map((category) => (
+              <motion.div
+                key={category}
+                className="bg-gradient-to-br from-purple-700 to-pink-500 px-10 py-4 rounded-md text-center font-semibold text-white hover:scale-110 transition-all duration-300 cursor-pointer shadow-md text-lg"
+                whileHover={{ scale: 1.1 }}
+              >
+                {category}
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="flex gap-6">
+            {categories.slice(4).map((category, index) => (
+              <motion.div
+                key={category}
+                className="bg-gradient-to-br from-purple-700 to-pink-500 px-8 py-3 rounded-md text-center font-semibold text-white hover:scale-110 transition-all duration-300 cursor-pointer shadow-md text-base"
+                whileHover={{ scale: 1.1 }}
+              >
+                {category}
+              </motion.div>
+            ))}
+            <motion.div
+              className="bg-white/10 border border-pink-600 px-2 py-2 rounded-md text-sm font-semibold text-pink-400 hover:bg-pink-500 hover:text-white transition-all duration-300 cursor-pointer text-center ml-2"
+              whileHover={{ scale: 1.1 }}
+            >
+              More
+            </motion.div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      <section className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+        {wallpapers.map((wallpaper, index) => (
+          <motion.div
+            key={wallpaper.slug}
+            className="bg-gradient-to-br from-[#1a1a2e] to-[#0f0c29] rounded-2xl shadow-xl overflow-hidden border border-purple-900 group hover:shadow-fuchsia-500/50 hover:scale-105 transition-all duration-500"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.2, duration: 0.6 }}
+            whileHover={{ y: -10 }}
+          >
+            <Link href={`/wallpaper/${wallpaper.slug}`}>
+              <div className="cursor-pointer">
+                <img
+                  src={wallpaper.src}
+                  alt={wallpaper.title}
+                  className="w-full h-56 object-cover group-hover:brightness-110 group-hover:scale-105 transition duration-300"
+                />
+                <div className="p-4">
+                  <h2 className="text-xl font-semibold text-white drop-shadow-md mb-2">
+                    {wallpaper.title}
+                  </h2>
+                  <p className="text-sm text-slate-300 group-hover:text-slate-100 transition-all duration-300">
+                    {wallpaper.description}
+                  </p>
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+        ))}
+      </section>
+    </motion.div>
   );
 }
