@@ -1,11 +1,11 @@
 "use client";
 import { useRef, useState, useEffect } from "react";
 import { Search } from "lucide-react";
-import Image from "next/image";
 import categories from './data/categories';
 import wallpapers from "./data/wallpapers";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   const scrollRef = useRef(null);
@@ -83,7 +83,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-8xl font-extrabold bg-gradient-to-r from-[#FF00CC] via-[#FFD700] to-[#00FFFF] bg-clip-text text-transparent mb-2"
+            className="text-8xl font-extrabold bg-gradient-to-r from-[#FF00CC] via-[#FFD700] to-[#00FFFF] bg-clip-text text-transparent mb-5"
           >
             Wallverse
           </motion.h2>
@@ -124,7 +124,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className="text-white text-xl font-medium text-center leading-snug max-w-2xl mx-auto"
+        className="text-white text-xl font-medium text-center leading-snug max-w-2xl mx-auto mb-10"
       >
         Level up your screen with Wallverse — a curated hub for bold, high-quality wallpapers that match your style and mood.
       </motion.p>
@@ -193,26 +193,30 @@ export default function Home() {
       </section>
 
       {/* Wallpapers Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10 px-8 py-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12 px-8 py-10">
         {wallpapers.map((wallpaper, index) => (
-          <div
-            key={index}
-            className="group rounded-2xl shadow-lg overflow-hidden cursor-pointer bg-[#181028] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-300"
-          >
-            <Image
-              src={wallpaper.image}
-              alt={wallpaper.name}
-              width={300}
-              height={200}
-              className="w-full h-[240px] object-cover rounded-t-2xl transition-transform duration-300 ease-in-out group-hover:scale-105"
-            />
-            <div className="pt-4 pb-2 px-4">
-              <h2 className="text-white text-lg font-bold">{wallpaper.name}</h2>
-              <p className="text-base text-gray-400">{wallpaper.description}</p>
+          <Link key={index} href={`/wallpaper/${wallpaper.slug}`}>
+            <div className="group rounded-2xl shadow-lg overflow-hidden bg-[#181028] transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] w-full max-w-[550px] mx-auto">
+              <motion.div
+                layoutId={`wallpaper-image-${wallpaper.slug}`}
+                className="relative w-full h-[200px] overflow-hidden rounded-t-2xl"
+              >
+                <Image
+                  src={wallpaper.image}
+                  alt={wallpaper.name}
+                  fill
+                  className="object-cover"
+                />
+              </motion.div>
+              <div className="pt-1 pb-2 px-4">
+                <h2 className="text-white text-lg font-bold">{wallpaper.name}</h2>
+                <p className="text-base text-gray-400">{wallpaper.description}</p>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
+
     </main>
   );
 }
