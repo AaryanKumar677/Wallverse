@@ -144,18 +144,15 @@ export default function Home() {
             {categories.map((category, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.15, ease: "easeOut" }}
-                whileHover={{ y: -10 }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.05, ease: "easeOut" }}
                 className="group w-[200px] sm:w-[260px] h-[300px] sm:h-[350px] my-5 bg-[#12052a] hover:bg-[#1e0f3f] rounded-2xl overflow-hidden cursor-pointer duration-100 shrink-0 hover:ring-2 hover:ring-pink-500 hover:ring-offset-2 hover:ring-offset-[#0b061c]"
               >
                 <div className="h-[80%] sm:h-[85%] overflow-hidden">
                   <img
                     src={category.image}
                     alt={category.name}
-                    className="w-full h-full object-cover transition-transform duration-200 ease-out group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-200 ease-out group-hover:scale-110"
                   />
                 </div>
                 <div className="bg-gradient-to-r from-[#cc7a00] via-[#cc4c4c] to-[#cc6b85] py-2 rounded-b-2xl shadow-[0_0_10px_#cc4c4c]">
@@ -191,27 +188,36 @@ export default function Home() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 sm:gap-x-10 sm:gap-y-12 px-4 sm:px-8 py-10">
         {wallpapers.map((wallpaper, index) => (
           <Link key={index} href={`/wallpaper/${wallpaper.slug}`}>
-            <div className="group rounded-2xl shadow-lg overflow-hidden bg-[#181028] transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] w-full max-w-[550px] mx-auto">
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.05, ease: "easeOut" }}
+              className="group rounded-2xl shadow-lg overflow-hidden bg-[#181028] transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] w-full max-w-[550px] mx-auto"
+            >
               <motion.div
                 layoutId={`wallpaper-image-${wallpaper.slug}`}
                 className="relative w-full h-[180px] sm:h-[200px] overflow-hidden rounded-t-2xl"
               >
-                <Image
-                  src={wallpaper.image}
-                  alt={wallpaper.name}
-                  fill
-                  className="object-cover"
-                />
+                <motion.div
+                  whileHover={{ scale: 1.14 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="w-full h-full"
+                >
+                  <Image
+                    src={wallpaper.image}
+                    alt={wallpaper.name}
+                    fill
+                    className="object-cover"
+                  />
+                </motion.div>
               </motion.div>
               <div className="pt-1 pb-2 px-4">
                 <h2 className="text-white text-base sm:text-lg font-bold">{wallpaper.name}</h2>
                 <p className="text-sm sm:text-base text-gray-400">{wallpaper.description}</p>
               </div>
-            </div>
+            </motion.div>
           </Link>
         ))}
       </div>
-
     </main>
   );
 }

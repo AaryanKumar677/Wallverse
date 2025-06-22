@@ -31,7 +31,7 @@ export default function FullScreenImage({ wallpaper }) {
 
         <button
             onClick={handleFullScreen}
-            className="bg-gradient-to-r from-pink-500 to-yellow-400 text-white px-4 py-2 rounded-lg hover:opacity-90 transition flex items-center gap-2 text-sm font-medium"
+            className="bg-[#1f1f2e] text-white px-4 py-2 rounded-lg hover:bg-[#2b2b3d] transition flex items-center gap-2 text-sm font-medium"
         >
             <BsFullscreen size={16} />
             View in Fullscreen
