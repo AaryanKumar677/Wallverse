@@ -138,7 +138,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 1.05 }}
                 transition={{ duration: 0.05, ease: "easeOut" }}
-                className="group w-[200px] sm:w-[280px] h-[300px] sm:h-[375px] my-6 bg-[#12052a] hover:bg-[#1e0f3f] rounded-2xl overflow-hidden cursor-pointer duration-100 shrink-0 hover:ring-2 hover:ring-pink-500 hover:ring-offset-2 hover:ring-offset-[#0b061c]"
+                className="group w-[200px] sm:w-[280px] h-[300px] sm:h-[375px] my-6 sm:my-6 bg-[#12052a] hover:bg-[#1e0f3f] rounded-2xl overflow-hidden cursor-pointer duration-100 shrink-0 hover:ring-2 hover:ring-pink-500 hover:ring-offset-2 hover:ring-offset-[#0b061c]"
               >
                 <div className="h-[75%] sm:h-[85%] overflow-hidden">
                   <img
@@ -147,7 +147,7 @@ export default function Home() {
                     className="w-full h-full object-cover transition-transform duration-200 ease-out group-hover:scale-110"
                   />
                 </div>
-                <div className="bg-gradient-to-r from-[#cc7a00] via-[#cc4c4c] to-[#cc6b85] py-2 rounded-b-2xl shadow-[0_0_10px_#cc4c4c]">
+                <div className="bg-gradient-to-r from-[#cc7a00] via-[#cc4c4c] to-[#cc6b85] py-2 sm:py-2 rounded-b-2xl shadow-[0_0_10px_#cc4c4c]">
                   <p className="text-white text-center py-2 font-bold text-base sm:text-lg">
                     {category.name}
                   </p>
