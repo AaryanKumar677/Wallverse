@@ -127,7 +127,7 @@ export default function Home() {
           Popular Categories
         </motion.h2>
 
-        <div className="relative px-2 sm:px-6 py-4 pt-6 overflow-visible mb-0 lg:mb-12">
+        <div className="relative px-2 sm:px-6 py-4 pt-6 overflow-visible mb-0 lg:mb-11">
           <div
             ref={scrollRef}
             className="flex overflow-x-auto no-scrollbar gap-6 sm:gap-10 scroll-smooth overflow-visible"
@@ -138,7 +138,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 1.05 }}
                 transition={{ duration: 0.05, ease: "easeOut" }}
-                className="group w-[220px] sm:w-[280px] h-[320px] sm:h-[375px] my-6 sm:my-6 bg-[#12052a] hover:bg-[#1e0f3f] rounded-2xl overflow-hidden cursor-pointer duration-100 shrink-0 hover:ring-2 hover:ring-pink-500 ring-offset-0"
+                className="group w-[210px] sm:w-[260px] h-[320px] sm:h-[360px] my-5 bg-[#12052a] hover:bg-[#1e0f3f] rounded-2xl overflow-hidden cursor-pointer duration-100 shrink-0 hover:ring-2 hover:ring-pink-500 hover:ring-offset-2 hover:ring-offset-[#0b061c]"
               >
                 <div className="h-[75%] sm:h-[85%] overflow-hidden">
                   <img
