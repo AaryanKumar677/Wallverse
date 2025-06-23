@@ -68,7 +68,6 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[--background] text-[--foreground] px-2 sm:px-4 pt-6 pb-12">
       <div className="flex flex-col md:flex-row justify-between items-center gap-6 px-2 md:px-6">
-        {/* Left side: Welcome + Wallverse */}
         <div className="text-left w-full md:w-1/2">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
@@ -89,7 +88,6 @@ export default function Home() {
           </motion.h2>
         </div>
 
-        {/* Right side: Search bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -140,7 +138,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 1.05 }}
                 transition={{ duration: 0.05, ease: "easeOut" }}
-                className="group w-[200px] sm:w-[260px] h-[300px] sm:h-[350px] my-6 bg-[#12052a] hover:bg-[#1e0f3f] rounded-2xl overflow-hidden cursor-pointer duration-100 shrink-0 hover:ring-2 hover:ring-pink-500 hover:ring-offset-2 hover:ring-offset-[#0b061c]"
+                className="group w-[200px] sm:w-[280px] h-[300px] sm:h-[375px] my-6 bg-[#12052a] hover:bg-[#1e0f3f] rounded-2xl overflow-hidden cursor-pointer duration-100 shrink-0 hover:ring-2 hover:ring-pink-500 hover:ring-offset-2 hover:ring-offset-[#0b061c]"
               >
                 <div className="h-[75%] sm:h-[85%] overflow-hidden">
                   <img
@@ -191,8 +189,8 @@ export default function Home() {
                 className="relative w-full h-[200px] sm:h-[200px] overflow-hidden rounded-t-2xl"
               >
                 <motion.div
-                  whileHover={{ scale: 1.14 }}
-                  whileTap={{ scale: 1.14 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 1.1 }}
                   transition={{ duration: 0.2, ease: "easeOut" }}
                   className="w-full h-full"
                 >
