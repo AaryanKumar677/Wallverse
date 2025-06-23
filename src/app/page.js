@@ -127,7 +127,7 @@ export default function Home() {
           Popular Categories
         </motion.h2>
 
-        <div className="relative px-2 sm:px-6 py-4 pt-6 overflow-visible">
+        <div className="relative px-2 sm:px-6 py-4 pt-6 overflow-visible mb-0 lg:mb-12">
           <div
             ref={scrollRef}
             className="flex overflow-x-auto no-scrollbar gap-6 sm:gap-10 scroll-smooth overflow-visible"
@@ -138,7 +138,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 1.05 }}
                 transition={{ duration: 0.05, ease: "easeOut" }}
-                className="group w-[200px] sm:w-[280px] h-[300px] sm:h-[375px] my-6 sm:my-6 bg-[#12052a] hover:bg-[#1e0f3f] rounded-2xl overflow-hidden cursor-pointer duration-100 shrink-0 hover:ring-2 hover:ring-pink-500 hover:ring-offset-2 hover:ring-offset-[#0b061c]"
+                className="group w-[220px] sm:w-[280px] h-[320px] sm:h-[375px] my-6 sm:my-6 bg-[#12052a] hover:bg-[#1e0f3f] rounded-2xl overflow-hidden cursor-pointer duration-100 shrink-0 hover:ring-2 hover:ring-pink-500 ring-offset-0"
               >
                 <div className="h-[75%] sm:h-[85%] overflow-hidden">
                   <img
@@ -179,9 +179,9 @@ export default function Home() {
         {wallpapers.map((wallpaper, index) => (
           <Link key={index} href={`/wallpaper/${wallpaper.slug}`}>
             <motion.div
-              whileHover={{ scale: 1.03 }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 1.03 }}
-              transition={{ duration: 0.05, ease: "easeOut" }}
+              transition={{ duration: 0.01, ease: "easeOut" }}
               className="group rounded-2xl shadow-lg overflow-hidden bg-[#181028] transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] w-full max-w-[550px] mx-auto"
             >
               <motion.div
@@ -189,7 +189,7 @@ export default function Home() {
                 className="relative w-full h-[200px] sm:h-[200px] overflow-hidden rounded-t-2xl"
               >
                 <motion.div
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 1.1 }}
                   transition={{ duration: 0.2, ease: "easeOut" }}
                   className="w-full h-full"
