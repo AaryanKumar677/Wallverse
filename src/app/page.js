@@ -66,7 +66,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[--background] text-[--foreground] px-4 sm:px-6 pt-6 pb-12">
+    <main className="min-h-screen bg-[--background] text-[--foreground] px-2 sm:px-4 pt-6 pb-12">
       <div className="flex flex-col md:flex-row justify-between items-center gap-6 px-2 md:px-6">
         {/* Left side: Welcome + Wallverse */}
         <div className="text-left w-full md:w-1/2">
@@ -114,7 +114,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className="text-white text-sm sm:text-xl font-medium text-center leading-snug max-w-2xl mx-auto mb-10 px-4"
+        className="text-white text-sm sm:text-xl font-medium text-center leading-snug max-w-2xl mx-auto mb-10 px-2"
       >
         Level up your screen with Wallverse — a curated hub for bold, high-quality wallpapers that match your style and mood.
       </motion.p>
@@ -124,15 +124,15 @@ export default function Home() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-xl sm:text-3xl font-extrabold text-white px-4 sm:px-6 mb-4 text-center sm:text-left"
+          className="text-xl sm:text-3xl font-extrabold text-white px-2 sm:px-6 mb-4 text-center sm:text-left"
         >
           Popular Categories
         </motion.h2>
 
-        <div className="relative px-4 sm:px-6 py-4 pt-6 overflow-visible">
+        <div className="relative px-2 sm:px-6 py-4 pt-6 overflow-visible">
           <div
             ref={scrollRef}
-            className="flex overflow-x-auto no-scrollbar gap-4 sm:gap-10 scroll-smooth overflow-visible"
+            className="flex overflow-x-auto no-scrollbar gap-6 sm:gap-10 scroll-smooth overflow-visible"
           >
             {categories.map((category, index) => (
               <motion.div
@@ -140,7 +140,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 1.05 }}
                 transition={{ duration: 0.05, ease: "easeOut" }}
-                className="group w-[160px] sm:w-[260px] h-[260px] sm:h-[350px] my-5 bg-[#12052a] hover:bg-[#1e0f3f] rounded-2xl overflow-hidden cursor-pointer duration-100 shrink-0 hover:ring-2 hover:ring-pink-500 hover:ring-offset-2 hover:ring-offset-[#0b061c]"
+                className="group w-[200px] sm:w-[260px] h-[300px] sm:h-[350px] my-6 bg-[#12052a] hover:bg-[#1e0f3f] rounded-2xl overflow-hidden cursor-pointer duration-100 shrink-0 hover:ring-2 hover:ring-pink-500 hover:ring-offset-2 hover:ring-offset-[#0b061c]"
               >
                 <div className="h-[75%] sm:h-[85%] overflow-hidden">
                   <img
@@ -150,7 +150,7 @@ export default function Home() {
                   />
                 </div>
                 <div className="bg-gradient-to-r from-[#cc7a00] via-[#cc4c4c] to-[#cc6b85] py-2 rounded-b-2xl shadow-[0_0_10px_#cc4c4c]">
-                  <p className="text-white text-center py-2 font-bold text-sm sm:text-lg">
+                  <p className="text-white text-center py-2 font-bold text-base sm:text-lg">
                     {category.name}
                   </p>
                 </div>
@@ -177,7 +177,7 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6 sm:gap-x-10 sm:gap-y-12 px-2 sm:px-8 py-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8 sm:gap-x-10 sm:gap-y-12 px-2 sm:px-8 py-10">
         {wallpapers.map((wallpaper, index) => (
           <Link key={index} href={`/wallpaper/${wallpaper.slug}`}>
             <motion.div
@@ -188,7 +188,7 @@ export default function Home() {
             >
               <motion.div
                 layoutId={`wallpaper-image-${wallpaper.slug}`}
-                className="relative w-full h-[180px] sm:h-[200px] overflow-hidden rounded-t-2xl"
+                className="relative w-full h-[200px] sm:h-[200px] overflow-hidden rounded-t-2xl"
               >
                 <motion.div
                   whileHover={{ scale: 1.14 }}
@@ -206,7 +206,7 @@ export default function Home() {
               </motion.div>
               <div className="pt-1 pb-2 px-4">
                 <h2 className="text-white text-base sm:text-lg font-bold">{wallpaper.name}</h2>
-                <p className="text-xs sm:text-base text-gray-400">{wallpaper.description}</p>
+                <p className="text-sm sm:text-base text-gray-400">{wallpaper.description}</p>
               </div>
             </motion.div>
           </Link>
