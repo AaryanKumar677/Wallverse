@@ -1,29 +1,47 @@
+// pages/index.js or app/page.js
 "use client";
+
 import { useRef, useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useRouter, usePathname } from "next/navigation";
 import { Search } from "lucide-react";
-import categories from './data/categories';
+import categories from "./data/categories";
 import wallpapers from "./data/wallpapers";
-import { motion } from "framer-motion";
-import Link from "next/link";
 import Image from "next/image";
+import WallpaperModal from "@/components/WallpaperModal";
 
 export default function Home() {
   const scrollRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [showLeft, setShowLeft] = useState(false);
   const [showRight, setShowRight] = useState(true);
+  const [selectedSlug, setSelectedSlug] = useState(null);
+  const router = useRouter();
+  const pathname = usePathname();
 
-  const handleScrollCheck = () => {
-    if (scrollRef.current) {
-      const scrollLeftValue = scrollRef.current.scrollLeft;
-      const maxScrollLeft = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
+  const selectedWallpaperSlug = pathname.split("/wallpaper/")[1] || null;
+  const isModalOpen = !!selectedWallpaperSlug;
 
-      setShowLeft(scrollLeftValue > 0);
-      setShowRight(scrollLeftValue < maxScrollLeft);
-    }
-  };
+  const selectedWallpaper = wallpapers.find(
+    (w) => w.slug === selectedSlug || w.slug === selectedWallpaperSlug
+  );
 
   useEffect(() => {
+    if (selectedWallpaperSlug) {
+      setSelectedSlug(selectedWallpaperSlug);
+    }
+  }, [selectedWallpaperSlug]);
+
+  useEffect(() => {
+    const handleScrollCheck = () => {
+      if (scrollRef.current) {
+        const scrollLeftValue = scrollRef.current.scrollLeft;
+        const maxScrollLeft =
+          scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
+        setShowLeft(scrollLeftValue > 0);
+        setShowRight(scrollLeftValue < maxScrollLeft);
+      }
+    };
     handleScrollCheck();
     const scrollElement = scrollRef.current;
     if (scrollElement) {
@@ -36,37 +54,21 @@ export default function Home() {
     };
   }, []);
 
-  const handleScroll = () => {
-    if (!scrollRef.current) return;
-    const scrollLeft = scrollRef.current.scrollLeft;
-    const maxScrollLeft = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
-
-    setShowLeft(scrollLeft > 0);
-    setShowRight(scrollLeft < maxScrollLeft);
-  };
-
-  const handleScrollLeft = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({
-        left: -scrollRef.current.offsetWidth,
-        behavior: 'smooth',
-      });
-      setTimeout(handleScroll, 300);
+  useEffect(() => {
+    if (selectedSlug) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
     }
-  };
-
-  const handleScrollRight = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({
-        left: scrollRef.current.offsetWidth,
-        behavior: 'smooth',
-      });
-      setTimeout(handleScroll, 300);
-    }
-  };
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [selectedSlug]);
 
   return (
-    <main className="min-h-screen bg-[--background] text-[--foreground] px-2 sm:px-4 pt-6 pb-12">
+    <main
+      className={`min-h-screen bg-[--background] text-[--foreground] px-2 sm:px-4 pt-6 pb-12 transition-all duration-300 ${isModalOpen ? 'blur-md scale-[0.98]' : ''}`}
+    >
       <div className="flex flex-col md:flex-row justify-between items-center gap-6 px-2 md:px-6">
         <div className="text-left w-full md:w-1/2">
           <motion.h1
@@ -158,7 +160,12 @@ export default function Home() {
 
           {showLeft && (
             <button
-              onClick={handleScrollLeft}
+              onClick={() => {
+                scrollRef.current?.scrollBy({
+                  left: -scrollRef.current.offsetWidth,
+                  behavior: "smooth",
+                });
+              }}
               className="absolute left-2 top-1/2 -translate-y-1/2 z-50 bg-[#ff5fbd] text-white px-3 py-2 rounded-full shadow-md hover:scale-105"
             >
               ←
@@ -166,7 +173,12 @@ export default function Home() {
           )}
           {showRight && (
             <button
-              onClick={handleScrollRight}
+              onClick={() => {
+                scrollRef.current?.scrollBy({
+                  left: scrollRef.current.offsetWidth,
+                  behavior: "smooth",
+                });
+              }}
               className="absolute right-2 top-1/2 -translate-y-1/2 z-50 bg-[#ff5fbd] text-white px-3 py-2 rounded-full shadow-md hover:scale-105"
             >
               →
@@ -177,7 +189,16 @@ export default function Home() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8 sm:gap-x-10 sm:gap-y-12 px-2 sm:px-8 py-10">
         {wallpapers.map((wallpaper, index) => (
-          <Link key={index} href={`/wallpaper/${wallpaper.slug}`}>
+          <div
+            key={wallpaper.slug}
+            onClick={() => {
+              setSelectedSlug(wallpaper.slug);
+              router.push(`/wallpaper/${wallpaper.slug}`, undefined, {
+                shallow: true,
+              });
+            }}
+            className="cursor-pointer"
+          >
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 1.03 }}
@@ -207,9 +228,22 @@ export default function Home() {
                 <p className="text-sm sm:text-base text-gray-400">{wallpaper.description}</p>
               </div>
             </motion.div>
-          </Link>
+          </div>
         ))}
       </div>
+
+      <AnimatePresence mode="wait">
+        {selectedSlug && selectedWallpaper && (
+          <WallpaperModal
+            key={selectedSlug}
+            wallpaper={selectedWallpaper}
+            onClose={() => {
+              setSelectedSlug(null);
+              router.push("/", { shallow: true });
+            }}
+          />
+        )}
+      </AnimatePresence>
     </main>
   );
 }
